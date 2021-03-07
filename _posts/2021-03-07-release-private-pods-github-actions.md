@@ -8,6 +8,8 @@ Another example of: "let's make a blogpost out of this cobbled together note, so
 Using CocoaPods' [private Pods](https://guides.cocoapods.org/making/private-cocoapods.html) allows you to modularize your Application while hosting the code in different private repositories[^1]. Releasing a new version of your private Pod can be time-consuming and is therefore a perfect opportunity for automation, in this case using GitHub Actions.
 This workflow assumes that you already created your private spec repo and successfully pushed an initial version of your Pod.
 
+I substitued all variables with `<>`. Example of the file with actual values: [Gist to release.yml](https://gist.github.com/hartlco/34e6e3cc35221eb4bc5c30f86cbd20d1)
+
 ## When to trigger the workflow
 You first need to decide on when to [trigger](https://docs.github.com/en/actions/reference/events-that-trigger-workflows) your automation workflow. In this example I decided to use the [workflow dispatch](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/) trigger. This gives the engineer the freedom on when to trigger a new release while, providing additional information like the semantic version to be used or a name for the release[^2]. We start our `release.yml` with the following:
 
@@ -50,7 +52,7 @@ We need to make the CocoaPods installation of the Action Runner aware that our p
 
 ```yml
     - name: Add Pod Spec
-      run: pod repo add <NAME_OF_REPO> https://${{ secrets.GIT_ACTOR }}:${{ secrets.GIT_TOKEN }}@github.com/<ORG>/<REPO_NAME>.git
+      run: pod repo add <NAME_OF_REPO> https://<GIT_ACTOR>:<GIT_TOKEN>@github.com/<ORG>/<REPO_NAME>.git
 ```
 
 We are passing the username and personal access token of a user with write permissions to the spec repo along the `pod repo add` command. I suggest defining the username and the access token as [encrypted secrets](https://docs.github.com/en/actions/reference/encrypted-secrets).
@@ -60,17 +62,17 @@ We can use the `version` parameter passed along the workflow_dispatch trigger an
 
 ```yml
     - name: Bump Podspec version
-      run: fastlane run version_bump_podspec path:"<NAME_OF_POD>.podspec" version_number:${{ github.event.inputs.version }}
+      run: fastlane run version_bump_podspec path:"<NAME_OF_POD>.podspec" version_number:<VERSION>
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:
-        title: Release/${{ github.event.inputs.version }}
+        title: Release/<VERSION>
         base: main
-        branch: Release/${{ github.event.inputs.version }}
+        branch: Release/<VERSION>
         body: |
-          Release: ${{ github.event.inputs.version }}
+          Release: <VERSION>
           Changes:
-          - Bump version to ${{ github.event.inputs.version }}
+          - Bump version to <VERSION>
 ```
 
 
@@ -81,12 +83,12 @@ As a last step, we create a release on GitHub[^3] and push the new version of ou
     - name: Create Release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: <GIT_TOKEN>
       with:
-        commitish: Release/${{ github.event.inputs.version }}
-        tag_name: "${{ github.event.inputs.version }}"
-        release_name: "${{ github.event.inputs.version }}"
-        body: "${{ github.event.inputs.version }}"
+        commitish: Release/<VERSION>
+        tag_name: "<VERSION>"
+        release_name: "<VERSION>"
+        body: "<VERSION>"
         commit-message: "Bump pod version"
     - name: Push Pod Spec
       run: pod repo push <NAME_OF_REPO> <NAME_OF_POD>.podspec
@@ -94,8 +96,6 @@ As a last step, we create a release on GitHub[^3] and push the new version of ou
 
 ## Run the action
 You can now run the action using GitHub's UI, as outlined again [here](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/).
-
-[Gist to release.yml](https://gist.github.com/hartlco/34e6e3cc35221eb4bc5c30f86cbd20d1)
 
 Bye!
 
