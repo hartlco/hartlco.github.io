@@ -20,8 +20,6 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "127.0.0.1:4000" # the base hostname & protocol for your site
 twitter_username: hartlco
 github_username:  hartlco
-disqus:
-    shortname: hartlco
 
 # Build settings
 gems: [jekyll-paginate]
