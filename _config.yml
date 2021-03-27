@@ -23,6 +23,7 @@ github_username:  hartlco
 
 # Build settings
 gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 paginate: 15
 paginate_path: "page:num"
 markdown: kramdown
