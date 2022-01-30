@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "aarle - a Shaarli / Pinboard bookmark manager"
+title: "aarle - a Shaarli/Pinboard bookmark manager"
 date: "2022-01-30 14:50"
 ---
 > Can you even call yourself an iOS Engineer if you never shipped a Twitter or Pinboard client?
