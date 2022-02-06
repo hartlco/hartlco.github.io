@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>aarle | a shaarli/pinboard client</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="aarle a Shaarli/Pinboard client">
+	<meta name="author" content="Martin Hartl">
+	<meta name="keywords" content="App,iOS,client,social,network,bookmark">
+
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="./assets/css/aarle.css" type="text/css" media="screen" title="no title">
+
+	<meta name="apple-itunes-app" content="app-id=1375296597, affiliate-data=11lqGj, app-argument=myURL">
+</head>
+
+
+<body>
+
+  <div class="top">
+    	<!-- Docs master nav -->
+    	<header class="navbar navbar bs-docs-nav" role="banner">
+    		<div class="container">
+    			<div class="navbar-header navbar-brand">
+    				<img src="./assets/images/appicon.png" class="appicon" width="25" alt="aarle App icon">
+    				<a href="./index.html" class="">aarle</a>
+    			</div>
+    			<ul class="nav navbar-nav navbar-right">
+    				<li><a href="https://itunes.apple.com/us/app/icro/id1375296597?ls=1&mt=8">Available in the App Store.</a></li>
+    			</ul>
+    		</div>
+    	</header>
+
+    	<!-- Page content of course! -->
+    	<main class="bs-masthead" id="content" role="main">
+    		<div class="scroller1">
+    			<div class="container">
+    				<!-- Three columns of text below the carousel -->
+    				<div class="row-fluid">
+    					<div class="col-sm-6">
+    						<div class="centeredImage">
+    							<img src="./assets/images/aarle-ios.png" width="380" alt="aarle on iPhone">
+    						</div>
+    					</div>
+    				</div><!-- /.col-lg-4 -->
+    				<div class="col-sm-6 catchHeaer">
+    					<h1>aarle, a Shaarli/Pinboard client</h1>
+    					<h2>Native and <a href="https://github.com/hartlco/aarle">open-source</a> Shaarli/Pinboard client</h2>
+    					<a href="https://itunes.apple.com/us/app/icro/id1375296597?ls=1&mt=8" title="Download in the App Store">
+    						<div class="centeredImage">
+    							<p>Download in the App Store</p>
+    						</div>
+    					</a>
+    				</div>
+				</div><!-- /.row -->
+				<div class="centeredImage">
+					<img src="./assets/images/aarle-mac.png" width="680" alt="aarle on iPhone">
+				</div>
+				<div class="container privacy">
+					<h3>Privacy Policy</h3>
+					<p>aarle does not store or process your data. aarle uses no 3rd party libraries and frameworks that transmits your data to other services.</p>
+					<p>aarle is a Shaarli/Pinboard client and an account for these services is therefore required. See <a href="https://github.com/shaarli/Shaarli">Shaarli</a> and <a href="https://pinboard.in/privacy/">Pinboard Privacy Policy</a>.</p>
+				</div>
+    		</div><!--scroller1 -->
+	</div><!--top-->
+	</main>
+
+<div class="footer">
+	<a href="http://hartl.co">by Martin Hartl https://hartl.co</a>
+	<a href="mailto:&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#104;&#097;&#114;&#116;&#108;&#046;&#099;&#111;">Mail</a>
+</div>
+
+
+
+<!-- JS and analytics only. -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script>
+    	!function ($) {
+    		$(function(){
+
+    			var $root = $('html, body');
+
+    			$('a').click(function() {
+    				var href = $.attr(this, 'href');
+    				$root.animate({
+    					scrollTop: $(href).offset().top
+    				}, 500, function () {
+    					window.location.hash = href;
+    				});
+    				return false;
+    			});
+    		})
+    	}(window.jQuery)
+    </script>
+
+</body>
+</html>

@@ -237,16 +237,13 @@ h4 {
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px; }
 
-.plainy {
-  background: url("../../plainy/images/background.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  color: #fff; }
+  .projPanel {
+    background-color: #000000;
+  }
 
-.plainy img {
-  padding-top: 25px; }
+.aarle {
+  background-color: #000000;
+}
 
 .icro {
   background-color: #FA9777;
